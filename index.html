@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <h1>Tic-tac-toe</h1>
+    </header>
+
+    <main>
+      <div class="ctrl-panel">
+        <div class="scores">
+          <div class="player x">
+            <div class="mark">X:</div>
+            <div class="score">0</div>
+          </div>
+          <div class="player o">
+            <div class="mark">O:</div>
+            <div class="score">0</div>
+          </div>
+        </div>
+        <div class="buttons"><button id="reset">Reset</button></div>
+      </div>
+      <div id="currentPlayer"></div>
+      <div class="board">
+        <div class="col">
+          <div id="1" class="cell"></div>
+          <div id="2" class="cell"></div>
+          <div id="3" class="cell"></div>
+        </div>
+        <div class="col">
+          <div id="4" class="cell"></div>
+          <div id="5" class="cell"></div>
+          <div id="6" class="cell"></div>
+        </div>
+        <div class="col">
+          <div id="7" class="cell"></div>
+          <div id="8" class="cell"></div>
+          <div id="9" class="cell"></div>
+        </div>
+      </div>
+    </main>
+    <div class="game-over hidden">
+      <h1>GAME OVER</h1>
+      <button id="replay">Play Again</button>
+    </div>
+  </body>
+  <script src="app.js" type="text/javascript"></script>
+</html>
