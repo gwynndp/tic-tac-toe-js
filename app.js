@@ -1,11 +1,18 @@
+// page elements
+const gameOver = document.querySelector(".game-over");
+const yourTurn = document.querySelector("#currentPlayer");
+const reset = document.querySelector("#reset");
+const replay = document.querySelector("#replay");
+const scores = document.querySelectorAll(".score");
+const cells = document.querySelectorAll(".cell");
+
+// initial state
 const playerX = { value: "X", score: 0, moves: [] };
 const playerO = { value: "O", score: 0, moves: [] };
-let cells;
 let currentPlayer = playerX;
 let winner = false;
-
-const yourTurn = document.querySelector("#currentPlayer");
 yourTurn.innerText = "Your Turn " + currentPlayer.value;
+let currentRotation = 0;
 
 function checkForWin() {
   // check rows = if 1,4,7 / 2,5,8 / 3,6,9
@@ -46,16 +53,43 @@ function checkForWin() {
 
 function playerMove(e) {
   e.preventDefault();
+  const cell = e.target;
+  error.classList.add("hidden");
+
   if (winner) {
     console.error("Game Over! You can't make another moves");
-  } else if (e.target.innerText === "") {
-    e.target.innerText = currentPlayer.value;
-    e.target.classList.add("play");
-    currentPlayer.moves.push(Number(e.target.id));
+  } else if (cell.innerText === "") {
+    cell.innerText = currentPlayer.value;
+    cell.classList.add("play");
+    currentPlayer.moves.push(Number(cell.id));
     checkBoard();
   } else {
-    console.error("Whoops! choose an empty square");
+    error.innerText = "Whoops! choose an empty square";
+    error.classList.remove("hidden");
   }
+  // if in hard mode
+  // rotate the board 90 deg
+  if (true) {
+    const states = ["_", "one", "two", "three"];
+    const sets = document.querySelectorAll(".set");
+    const board = document.querySelector(".board");
+    console.log(states[currentRotation], board.classList);
+    board.classList.remove(states[currentRotation]);
+    board.classList.add(states[currentRotation + 1]);
+    Array.from(sets).map((set) => {
+      set.classList.remove(states[currentRotation]);
+      set.classList.add(states[currentRotation + 1]);
+    });
+    currentRotation = (currentRotation + 1) % 4;
+  }
+  // if in extra-hard mode
+  // rotate the board 90 deg
+  // & drop the values in stacks down the columns
+}
+
+function nextTurn() {
+  currentPlayer = currentPlayer === playerX ? playerO : playerX;
+  yourTurn.innerText = "Your Turn " + currentPlayer.value;
 }
 
 // check if current player won
@@ -63,25 +97,18 @@ function playerMove(e) {
 // switch the current player for next turn
 function checkBoard() {
   if (checkForWin()) {
-    currentPlayer.score = currentPlayer.score + 1;
-    console.table({
-      currentPlayer: currentPlayer.score,
-      playerX: playerX.score,
-      playerO: playerO.score,
-    });
     winner = currentPlayer;
+    winner.score = winner.score + 1;
 
-    document.querySelector(
+    const score = document.querySelector(
       `.player.${winner.value.toLowerCase()} .score`
-    ).innerText = winner.score;
+    );
+    score.innerText = winner.score;
 
-    const gameOver = document.querySelector(".game-over");
     gameOver.classList.remove("hidden");
-    currentPlayer = currentPlayer === playerX ? playerO : playerX;
-    yourTurn.innerText = "Your Turn " + currentPlayer.value;
+    nextTurn();
   } else {
-    currentPlayer = currentPlayer === playerX ? playerO : playerX;
-    yourTurn.innerText = "Your Turn " + currentPlayer.value;
+    nextTurn();
   }
 }
 
@@ -95,41 +122,35 @@ function clearBoard() {
     cell.innerText = "";
     cell.classList.remove("play");
   });
+  error.classList.add("hidden");
 }
 
 function clearScores() {
   playerX.score = 0;
   playerO.score = 0;
-  const scores = document.querySelectorAll(".score");
   Array.from(scores).map((score) => (score.innerText = "0"));
   currentPlayer = playerX;
 }
 
 function main() {
-  // add event listeners to each cell
-
-  cells = document.querySelectorAll(".cell");
+  // listen for player clicks
   Array.from(cells).map((cell) => {
     cell.addEventListener("click", playerMove);
   });
 
-  const reset = document.querySelector("#reset");
+  // listen to reset board and player scores
   reset.addEventListener("click", () => {
-    console.log("reset");
-    // reset board and player scores
     clearBoard();
     clearScores();
   });
 
-  const replay = document.querySelector("#replay");
+  // listen to hide 'game over' and replay
   replay.addEventListener("click", () => {
-    // reset board and hide overlay to replay
-    const gameOver = document.querySelector(".game-over");
     gameOver.classList.add("hidden");
     clearBoard();
   });
 }
 
-document.addEventListener("DOMContentLoaded", function (event) {
+document.addEventListener("DOMContentLoaded", function () {
   main();
 });

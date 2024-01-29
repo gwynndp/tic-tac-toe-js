@@ -17,13 +17,12 @@ body {
 	flex-direction: column;
 	align-items: center;
 	border: 2px red;
-	/* background-color: hsla(200, 22%, 50%, 0.20); */
 	background: hsla(200, 22%, 50%, 0.20);
 }
 
 button {
-	/* background: linear-gradient(180deg, lightblue, white); */
-	/* background: radial-gradient(white, lightblue); */
+	background-color: red;
+	color:white;
 	border: none;
 	border-radius: 8px;
 	padding: 1em;
@@ -47,6 +46,15 @@ h1 {
 	font-weight: 600;
 }
 
+#error {
+	text-align: center;
+	color: red;
+	margin: 1em;
+	opacity: 0;
+	animation: fadeIn .5s .1s ease-in-out;
+	animation-fill-mode: forwards;
+}
+
 .ctrl-panel {
 	display:flex;
 	justify-content: space-between;
@@ -55,11 +63,13 @@ h1 {
 
 .board, .cell {
     display: flex;
-	justify-content: center;
-	align-items: center;
-	padding: 10px;
-	/* filter: drop-shadow(1px 4px 3px grey); */
-	box-shadow: 4px 4px crimson;}
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 4px 4px crimson;
+    transition: all 1s linear;
+}
 
 .cell {
 	width: 100px;
@@ -82,6 +92,9 @@ h1 {
 	top: calc(50% - 20vh);
 	padding: 1em;
 	filter: d;
+	opacity: 0;
+	animation: fadeIn .5s .1s ease-in-out;
+	animation-fill-mode: forwards;
 }
 
 .game-over h1 {
@@ -109,12 +122,39 @@ h1 {
 
 .play {
 	animation: bounceIn 1s 0s ease-in-out;
-	/* animation: fadeIn 1s .1s ease-in-out; */
-	/* animation: rubberBand 1s; */
-	/* animation: rotate .5s .1s cubic-bezier(.29, 1.01, 1, -0.68); */
+}
 
-/* @keyframes rotate {
-	100% {
-		transform: rotateY(90deg) scale(1.1);
-	}
-} */
+.set {
+	display: flex;
+	transition: all 1s linear;
+}
+
+/* one rotation */
+
+.board.one {
+	flex-direction: row;
+}
+.set.one {
+	flex-direction: column-reverse;
+}
+
+
+/* two rotation */
+
+.board.two {
+	flex-direction: column-reverse;
+}
+
+.set.two {
+	flex-direction: row-reverse;
+}
+
+/* three rotation */
+
+.board.three {
+	flex-direction: row-reverse;
+}
+
+.set.three {
+	flex-direction: column;
+}
