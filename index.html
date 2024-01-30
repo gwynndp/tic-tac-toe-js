@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v6.2.0/css/all.css"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Document</title>
   </head>
@@ -25,6 +29,15 @@
         </div>
         <div class="buttons">
           <button id="reset">Reset</button>
+          <label for="mode" class="mode">
+            <input id="mode" name="mode" type="checkbox" />
+            Hard Mode
+            <i
+              class="fa-solid fa-circle-info"
+              value="The board rotates 90deg each turn"
+            >
+            </i>
+          </label>
         </div>
       </div>
       <div id="currentPlayer"></div>
@@ -74,50 +87,6 @@
         </div>
       </div>
       <!-- end of board -->
-      <!-- <div class="board">
-        <div class="col">
-          <div class="row">
-            <span class="cell-id">1</span>
-            <div id="1" class="cell"></div>
-          </div>
-          <div>
-            <span class="cell-id">2</span>
-            <div id="2" class="cell"></div>
-          </div>
-          <div>
-            <span class="cell-id">3</span>
-            <div id="3" class="cell"></div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="row">
-            <span class="cell-id">4</span>
-            <div id="4" class="cell"></div>
-          </div>
-          <div>
-            <span class="cell-id">5</span>
-            <div id="5" class="cell"></div>
-          </div>
-          <div>
-            <span class="cell-id">6</span>
-            <div id="6" class="cell"></div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="row">
-            <span class="cell-id">7</span>
-            <div id="7" class="cell"></div>
-          </div>
-          <div>
-            <span class="cell-id">8</span>
-            <div id="8" class="cell"></div>
-          </div>
-          <div>
-            <span class="cell-id">9</span>
-            <div id="9" class="cell"></div>
-          </div>
-        </div>
-      </div> -->
     </main>
     <div class="game-over hidden">
       <h1>GAME OVER</h1>

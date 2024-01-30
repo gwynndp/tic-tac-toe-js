@@ -25,7 +25,7 @@ button {
 	color:white;
 	border: none;
 	border-radius: 8px;
-	padding: 1em;
+	padding: .5em;
 	filter: drop-shadow(1px 4px 3px black);
 	text-transform: uppercase;
 	font-weight: 600;
@@ -59,6 +59,13 @@ h1 {
 	display:flex;
 	justify-content: space-between;
 	margin: 2vh auto;
+}
+
+.buttons {
+	display: flex;
+	flex-direction: column;
+	width: 35%;
+	justify-content:space-between;
 }
 
 .board, .cell {

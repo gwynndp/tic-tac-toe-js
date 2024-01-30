@@ -5,6 +5,9 @@ const reset = document.querySelector("#reset");
 const replay = document.querySelector("#replay");
 const scores = document.querySelectorAll(".score");
 const cells = document.querySelectorAll(".cell");
+const sets = document.querySelectorAll(".set");
+const info = document.querySelector("i");
+const mode = document.querySelector("#mode");
 
 // initial state
 const playerX = { value: "X", score: 0, moves: [] };
@@ -13,6 +16,7 @@ let currentPlayer = playerX;
 let winner = false;
 yourTurn.innerText = "Your Turn " + currentPlayer.value;
 let currentRotation = 0;
+let hard = false;
 
 function checkForWin() {
   // check rows = if 1,4,7 / 2,5,8 / 3,6,9
@@ -69,7 +73,7 @@ function playerMove(e) {
   }
   // if in hard mode
   // rotate the board 90 deg
-  if (true) {
+  if (hard) {
     const states = ["_", "one", "two", "three"];
     const sets = document.querySelectorAll(".set");
     const board = document.querySelector(".board");
@@ -132,6 +136,16 @@ function clearScores() {
   currentPlayer = playerX;
 }
 
+function clearRotation() {
+  Array.from(sets).map((set) => {
+    console.log(set.classList);
+    set.classList.remove(...set.classList);
+    set.classList.add("set");
+    mode.checked = false;
+    hard = false;
+  });
+}
+
 function main() {
   // listen for player clicks
   Array.from(cells).map((cell) => {
@@ -142,12 +156,18 @@ function main() {
   reset.addEventListener("click", () => {
     clearBoard();
     clearScores();
+    clearRotation();
   });
 
   // listen to hide 'game over' and replay
   replay.addEventListener("click", () => {
     gameOver.classList.add("hidden");
     clearBoard();
+  });
+
+  mode.addEventListener("change", (e) => {
+    console.log("checked", e.target.checked);
+    hard = e.target.checked;
   });
 }
 
