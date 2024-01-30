@@ -66,6 +66,7 @@ h1 {
 	flex-direction: column;
 	width: 35%;
 	justify-content:space-between;
+	position: r;
 }
 
 .board, .cell {
@@ -112,6 +113,14 @@ h1 {
 
 .hidden {
 	display: none;
+}
+
+#info {
+	background-color: white;
+	padding: 0.5em;
+	position: absolute;
+	top: 240px;
+	left: 635px;
 }
 
 .scores .player {

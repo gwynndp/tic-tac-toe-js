@@ -169,6 +169,14 @@ function main() {
     console.log("checked", e.target.checked);
     hard = e.target.checked;
   });
+
+  info.addEventListener("mouseover", () => {
+    document.querySelector("#info").classList.remove("hidden");
+  });
+
+  info.addEventListener("mouseout", () => {
+    document.querySelector("#info").classList.add("hidden");
+  });
 }
 
 document.addEventListener("DOMContentLoaded", function () {
