@@ -46,13 +46,14 @@ h1 {
 	font-weight: 600;
 }
 
-#error {
+.error {
 	text-align: center;
 	color: red;
-	margin: 1em;
+	/* margin: 1em; */
 	opacity: 0;
-	animation: fadeIn .5s .1s ease-in-out;
+	animation: fadeIn .5s 0s ease-in;
 	animation-fill-mode: forwards;
+	height: 20px;
 }
 
 .ctrl-panel {
@@ -99,10 +100,9 @@ h1 {
 	position: absolute;
 	top: calc(50% - 20vh);
 	padding: 1em;
-	filter: d;
-	opacity: 0;
-	animation: fadeIn .5s .1s ease-in-out;
-	animation-fill-mode: forwards;
+	/* opacity: 0; */
+	/* animation: fadeIn .5s .1s ease-in-out; */
+	/* animation-fill-mode: forwards; */
 }
 
 .game-over h1 {
@@ -113,6 +113,10 @@ h1 {
 
 .hidden {
 	display: none;
+}
+
+.hide {
+	animation: fadeOut .3s 0s ease-in-out;
 }
 
 #info {
@@ -145,32 +149,36 @@ h1 {
 	transition: all 1s linear;
 }
 
-/* one rotation */
-
+/* rotation one */
 .board.one {
-	flex-direction: row;
+	flex-direction: column;
 }
 .set.one {
-	flex-direction: column-reverse;
+	flex-direction: row;
 }
 
-
-/* two rotation */
-
+/* rotation two */
 .board.two {
+	flex-direction: row;
+	flex-wrap: nowrap;
+}
+.set.two {
+	flex-direction: column-reverse !important;
+}
+
+
+/* rotation three */
+.board.three {
 	flex-direction: column-reverse;
 }
-
-.set.two {
-	flex-direction: row-reverse;
-}
-
-/* three rotation */
-
-.board.three {
-	flex-direction: row-reverse;
-}
-
 .set.three {
+	flex-direction: row-reverse !important;
+}
+
+/* rotation four */
+.board.four {
+	flex-direction: row-reverse;
+}
+.set.four {
 	flex-direction: column;
 }
